@@ -23,13 +23,13 @@ export default function Home() {
 
         <div className="flex flex-col gap-4 mt-6 text-white dark:text-gray-200">
           <Button type="button">
-            <Link className="w-full" href={PAGES.login}>
+            <Link className="w-full block" href={PAGES.login}>
               Login
             </Link>
           </Button>
 
           <Button type="button">
-            <Link className="w-full" href={PAGES.signUp}>
+            <Link className="w-full block" href={PAGES.signUp}>
               Sign Up
             </Link>
           </Button>
