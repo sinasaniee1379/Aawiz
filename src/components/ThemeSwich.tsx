@@ -24,7 +24,9 @@ export default function ThemeToggle() {
 
   return (
     <div className="flex items-center gap-3">
-      <span className="text-sm">{enabled ? "Dark" : "Light"}</span>
+      <span className="text-sm text-black dark:text-white">
+        {enabled ? "Dark" : "Light"}
+      </span>
 
       <Switch
         checked={enabled}
@@ -32,9 +34,7 @@ export default function ThemeToggle() {
           setEnabled(val);
           setTheme(val ? "dark" : "light");
         }}
-        className={`${
-          enabled ? "bg-gray-900" : "bg-gray-300"
-        } relative inline-flex h-6 w-11 items-center rounded-full transition`}>
+        className={` relative inline-flex h-6 w-11 items-center rounded-full transition bg-gray-900 dark:bg-gray-300`}>
         <span
           className={`${
             enabled ? "translate-x-6" : "translate-x-1"

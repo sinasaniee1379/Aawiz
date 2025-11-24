@@ -29,10 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-white dark:bg-gray-900 `}>
         <QueryClient>
           <Providers>
-            <div className="absolute top-0 w-full bg-white py-4 px-[5%] shadow-xl">
+            <div className="absolute top-0 w-full bg-white dark:bg-gray-900 py-4 px-[5%] shadow-xl">
               <ThemeSwitcher />
             </div>
             <div>{children}</div>

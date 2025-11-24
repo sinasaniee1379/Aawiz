@@ -6,31 +6,22 @@ import { Heart, ShoppingCart } from "iconsax-reactjs";
 
 const Cart = ({ image, price, title }: IProduct) => {
   const [isLike, setIsLike] = useState(false);
-  const colorLists = [
-    { classname: "bg-gray-800" },
-    { classname: "bg-white" },
-    { classname: "bg-gray-700" },
-  ];
+
   return (
-    <div className="group shadow-normal rounded-sm p-2 col-span-2 relative lg:col-span-2 overflow-hidden">
-      <p className="absolute rounded-r-lg py-0.5 px-1 bg-secondary-100 text-secondary-400 text-xs font-light left-0 lg:text-base">
-        -15%
-      </p>
-      <div className="min-h-[120px] border-b flex items-center justify-center p-4 relative">
-        <div className="flex flex-col absolute right-2">
-          <div className="flex flex-col gap-1">
-            {colorLists.map((item, index) => (
-              <p
-                key={index}
-                className={twMerge(
-                  "w-2 h-2 rounded-full border border-gray-600",
-                  item.classname
-                )}
-              />
-            ))}
-          </div>
-          <span className="text-gray-500 font-medium">+</span>
-        </div>
+    <div
+      className="
+      group rounded-md p-2 col-span-2 relative lg:col-span-2 
+      overflow-hidden shadow-lg 
+      bg-white dark:bg-gray-800 
+      transition-all
+    ">
+      {/* Image */}
+      <div
+        className="
+        min-h-[120px] border-b 
+        flex items-center justify-center p-4 relative
+        border-gray-200 dark:border-gray-700
+      ">
         <Image
           width={132}
           height={104}
@@ -40,32 +31,63 @@ const Cart = ({ image, price, title }: IProduct) => {
         />
       </div>
 
+      {/* Content */}
       <div className="mt-2">
-        <h3 className="truncate group-hover:text-primary">{title}</h3>
+        <h3 className="truncate group-hover:text-primary dark:text-white">
+          {title}
+        </h3>
+
         <div className="flex items-end justify-between mt-2">
           <div>
-            <p className="line-through text-gray-400 text-[10px]  lg:text-sm font-normal">
+            <p className="line-through text-gray-400 dark:text-gray-500 text-[10px] lg:text-sm">
               $ {price}
             </p>
-            <p className="text-lg">$ {price * 0.5}</p>
+            <p className="text-lg text-black dark:text-white">
+              $ {price * 0.5}
+            </p>
           </div>
         </div>
       </div>
+
+      {/* Hover Action */}
       <div
-        className="absolute bg-white bottom-[-60px] left-0 w-full flex justify-between px-3 py-2 transition-all duration-500 opacity-0
-      group-hover:bottom-2 items-center group-hover:opacity-100">
-        <button className="flex items-center gap-1 border border-blue-400 text-blue-500 rounded-lg px-3 py-1 text-sm">
-          <ShoppingCart size={24} variant="Linear" className="stroke-primary" />{" "}
+        className="
+          absolute 
+          bg-white dark:bg-gray-800 
+          bottom-[-60px] left-0 
+          w-full flex justify-between px-3 py-2 
+          transition-all duration-500 opacity-0
+          group-hover:bottom-2 group-hover:opacity-100 
+          items-center shadow-md dark:shadow-none
+        ">
+        {/* Add to cart */}
+        <button
+          className="
+          flex items-center gap-1 
+          border border-blue-400 
+          text-blue-500 
+          rounded-lg px-3 py-1 text-sm
+          dark:border-blue-300 dark:text-blue-300
+        ">
+          <ShoppingCart
+            size={24}
+            variant="Linear"
+            className="stroke-primary dark:stroke-blue-300"
+          />
           Add to cart
         </button>
 
+        {/* Like / Heart */}
         <Heart
           size={24}
           onClick={() => setIsLike(!isLike)}
           variant="Bold"
           className={twMerge(
-            "stroke-primary text-transparent hover:text-primary",
-            isLike && "text-primary"
+            `
+              stroke-primary text-transparent hover:text-primary 
+              dark:stroke-blue-300 dark:hover:text-blue-300
+            `,
+            isLike && "text-primary dark:text-blue-300"
           )}
         />
       </div>

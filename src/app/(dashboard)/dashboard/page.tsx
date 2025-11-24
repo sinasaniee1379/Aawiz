@@ -11,10 +11,21 @@ const Dashboard = () => {
   const products: IProduct[] = data;
 
   return (
-    <div className="grid grid-cols-4 gap-4 mt-6 lg:grid-cols-8">
+    <div
+      className="
+        grid grid-cols-4 gap-4 lg:grid-cols-8 
+        px-[5%] mt-20 mb-10 
+        text-black dark:text-white
+      ">
       {isPending
         ? mockData.map((_, index) => (
-            <Skeleton key={index} className="col-span-2 w-full h-[186px]" />
+            <Skeleton
+              key={index}
+              className="
+                col-span-2 w-full h-[186px]
+                bg-gray-200 dark:bg-gray-700
+              "
+            />
           ))
         : products?.map((item) => (
             <Cart
