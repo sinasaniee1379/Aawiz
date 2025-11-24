@@ -25,7 +25,7 @@ const Login = () => {
   return (
     <div
       className="
-            h-[calc(100vh-56px)] w-full 
+            h-screen w-full 
             bg-[linear-gradient(154deg,white_50%,#1e40af_50%)]
             dark:bg-[linear-gradient(154deg,#0f172a_50%,#1e3a8a_50%)]
             flex items-center justify-center flex-col
