@@ -2,12 +2,15 @@ import React from "react";
 import { ButtonProps } from "./types";
 import { twMerge } from "tailwind-merge";
 
-const Button = ({ classname, title, type }: ButtonProps) => {
+const Button = ({ classname, children, type }: ButtonProps) => {
   return (
     <button
-      className={twMerge("text-white bg-blue-500 rounded-lg py-3", classname)}
+      className={twMerge(
+        "text-white bg-blue-500 rounded-lg py-3 hover:bg-blue-700 transition-all duration-500",
+        classname
+      )}
       type={type}>
-      {title}
+      {children}
     </button>
   );
 };
