@@ -1,29 +1,46 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import { Switch } from "@headlessui/react";
+import { useEffect, useState } from "react";
 
-export default function ThemeSwitcher() {
-  const [mounted, setMounted] = useState(false);
+export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const [enabled, setEnabled] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return null; // or a loading placeholder
-  }
+  // جلوگیری از Hydration Error
+  useEffect(() => {
+    if (mounted) {
+      setEnabled(theme === "dark");
+    }
+  }, [theme, mounted]);
+
+  if (!mounted) return null;
 
   return (
-    <select
-      value={theme}
-      onChange={(e) => setTheme(e.target.value)}
-      className="p-2 border rounded-md dark:bg-gray-800 dark:text-white">
-      <option value="system">System</option>
-      <option value="dark">Dark</option>
-      <option value="light">Light</option>
-    </select>
+    <div className="flex items-center gap-3">
+      <span className="text-sm">{enabled ? "Dark" : "Light"}</span>
+
+      <Switch
+        checked={enabled}
+        onChange={(val) => {
+          setEnabled(val);
+          setTheme(val ? "dark" : "light");
+        }}
+        className={`${
+          enabled ? "bg-gray-900" : "bg-gray-300"
+        } relative inline-flex h-6 w-11 items-center rounded-full transition`}>
+        <span
+          className={`${
+            enabled ? "translate-x-6" : "translate-x-1"
+          } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+        />
+      </Switch>
+    </div>
   );
 }
